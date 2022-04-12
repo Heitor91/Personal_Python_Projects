@@ -4,25 +4,26 @@ Funções compleentares ao código principal
 Histórico de Modificações:
 11/04/2022 - Criado
 ====================================================================================================================="""
-from colorama import Fore, Back, Style, init
+from colorama import init
+from Auxiliar_Functions.Colorama_Styles import fonte_entradas, fonte_invalido
 import os
-init(autoreset=True)
 
 
 def entrada():
-    def nome():
+    def nome(select=True):
         while True:
-            aux = input(Back.BLUE + Fore.WHITE + Style.BRIGHT + 'Insira o primeiro nome:').capitalize()
+            aux = input(fonte_entradas + f'Insira o {"primeiro" if select else "segundo"} nome:').capitalize()
             if aux.replace(' ', '').isalpha():
                 return aux
-            print()
+            print(fonte_invalido + "Inserção de dados inválida")
 
     def sobrenome():
         while True:
-            aux = input(Back.BLUE + Fore.WHITE + Style.BRIGHT + 'Insira o primeiro nome:').capitalize()
+            aux = nome(False).split()
+            aux = ' '.join([item if len(item) > 2 else item.lower for item in aux])
             if aux.replace(' ', '').isalpha():
                 return aux
-            print()
+            print(fonte_invalido + "Inserção de dados inválida")
 
     def data():
         pass
