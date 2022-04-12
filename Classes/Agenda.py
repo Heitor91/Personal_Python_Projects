@@ -18,3 +18,6 @@ class Agenda:
 
     def apaga_contato(self, dado):
         self.__agenda.pop(Agenda.retorna_index(self, dado))
+
+    def exibe_agenda(self):
+        print(f'{self.__agenda[index]}\n' for index in range(len(self.__agenda)))
