@@ -8,10 +8,9 @@ Histórico de Modificações:
 # import os
 from Auxiliar_Functions.Input_Usuário import entrada
 from Classes.Agenda import Agenda
-from Classes.Pessoa import Pessoa
 
-agenda = Agenda
-pessoa = Pessoa
+agenda = Agenda()
 
-pessoa.nome, pessoa.sobrenome, pessoa.data, pessoa.cpf = entrada()
+agenda.nome, agenda.sobrenome, agenda.data, agenda.cpf = entrada()
+agenda.armazena()
 agenda.exibe_agenda()
