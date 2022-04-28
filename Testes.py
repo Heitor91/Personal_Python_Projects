@@ -73,7 +73,9 @@ p1 = ['Xbox S', "R$5.600,00"]
 lista.nome, lista.valor = p1[0], p1[1]
 lista.guarda()
 lista.exibe()
-"""
+
+----------------------------------------------------------------------
+capture output text in terminal during unittest's
 
 import io
 import sys
@@ -92,6 +94,11 @@ def test_foo():
 
 
 test_foo()
-
-"""if __name__ == '__main__':
-    unittest.main()"""
+"""
+data = '13/12/1991'
+print(data)
+print(data.split('/'))
+print(data)
+data = '13121991'
+print(data)
+print(data.split())

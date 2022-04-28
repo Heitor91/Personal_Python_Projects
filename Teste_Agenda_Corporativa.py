@@ -99,8 +99,24 @@ class MyTestCase(unittest.TestCase):
         sys.stdout = sys.__stdout__  # Reset redirect
         self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mFormato de data inválido\n')
 
-    @patch('builtins.input', lambda _: '32/12/1991')
+    @patch('builtins.input', lambda _: '13/21/1991')
     def test_birth_error3(self):
+        captured_output = io.StringIO()  # Create StringIO object
+        sys.stdout = captured_output  # and redirect stdout.
+        nascimento(teste=True)  # Call function
+        sys.stdout = sys.__stdout__  # Reset redirect
+        self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mFormato de data inválido\n')
+
+    @patch('builtins.input', lambda _: '13/12/2100')
+    def test_birth_error4(self):
+        captured_output = io.StringIO()  # Create StringIO object
+        sys.stdout = captured_output  # and redirect stdout.
+        nascimento(teste=True)  # Call function
+        sys.stdout = sys.__stdout__  # Reset redirect
+        self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mFormato de data inválido\n')
+
+    @patch('builtins.input', lambda _: '29/02/2022')
+    def test_birth_error5(self):
         captured_output = io.StringIO()  # Create StringIO object
         sys.stdout = captured_output  # and redirect stdout.
         nascimento(teste=True)  # Call function
@@ -120,7 +136,23 @@ class MyTestCase(unittest.TestCase):
         sys.stdout = captured_output  # and redirect stdout.
         cpf(teste=True)  # Call function
         sys.stdout = sys.__stdout__  # Reset redirect
-        self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mInserção de dados inválida\n')
+        self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mFormato invalido!!!!\n')
+
+    @patch('builtins.input', lambda _: '000.000.000-0')
+    def test_cpf_error2(self):
+        captured_output = io.StringIO()  # Create StringIO object
+        sys.stdout = captured_output  # and redirect stdout.
+        cpf(teste=True)  # Call function
+        sys.stdout = sys.__stdout__  # Reset redirect
+        self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mFormato invalido!!!!\n')
+
+    @patch('builtins.input', lambda _: '00.000.000-00')
+    def test_cpf_error3(self):
+        captured_output = io.StringIO()  # Create StringIO object
+        sys.stdout = captured_output  # and redirect stdout.
+        cpf(teste=True)  # Call function
+        sys.stdout = sys.__stdout__  # Reset redirect
+        self.assertEqual(captured_output.getvalue(), '\x1b[41m\x1b[37m\x1b[1mFormato invalido!!!!\n')
 
 
 if __name__ == '__main__':
